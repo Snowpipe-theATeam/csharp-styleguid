@@ -120,7 +120,7 @@ image를 제외한 모든 파일은 *PascalCase*를 따른다.
 
 Manager와 Controller의 차이점은 Manager는 싱글턴이거나 Static이며, 여러 Object, asset들이 관여된 특수한 게임 로직을 관리한다. 반면에 Controller는 Object만을 관리하며, 여러개의 인스턴스가 만들어질 수도 있다. 예를 들어 Scene에서 여러개의 EnemyController는 각각의 enemy만을 관리한다.
 
-Difference between Data and Item is that Item is an instance in-game, and in most cases Item contains a Data. For example CardData has all preset attributes of a card, while CardItem has its CardData plus attributes that vary for different players, such as card level. We will talk about more this in another data structure article.
+Data와 Item의 차이점 : Item은 게임 내에서 하나의 인스턴스이며, 대부분의 경우 Data를 포함하고 있다. 예를 들어, CardData는 한 card의 미리 세팅된 모든 속성들을 가지고 있는 반면에, CardItem은 CardData 뿐만 아니라 개별 플레이어들의 다양한 (카드 레벨 같은) 속성들도 가지고 있다. 
 
 ## Variables & Functions Orders
 ```csharp
@@ -131,24 +131,25 @@ public class MyClass : MonoBehaviour
     private const string CONST_2;
 
     // Static variables
-    public static int static1;
-    private static string static2;
+    public static int s_static1;
+    private static string s_static2;
     
     // Editor-assigned variables
     [SerializeField] 
-    public Image maskImage;  
+    private Image maskImage;  
     [SerializeField] 
     private MyClass anotherComponent;
 
     // Other varaibles
-    public int primitiveVariables1;
-    private string primitiveVariable2;
+    public int PrimitiveVariables1;
+    private string _primitiveVariable2;
 
     // Properties
     public int Property1 
     {
       get; set;
     }
+    
     private string property2 
     {
       get; set;
@@ -187,7 +188,7 @@ public class MyClass : MonoBehaviour
 #region Timer
     private const int RESET_SECONDS = 180;
     private float _secondsLeft;
-    public float canResetTime => _secondsLeft < 0;
+    public float CanResetTime => _secondsLeft < 0;
     public void ResetTime()
     {
       _secondsLeft = RESET_SECONDS;
